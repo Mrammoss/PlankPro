@@ -10,9 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_13_202311) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_04_000623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "cut_yields", force: :cascade do |t|
+    t.decimal "board_length", precision: 7, scale: 4
+    t.string "board_length_unit"
+    t.decimal "piece_length", precision: 7, scale: 4
+    t.string "piece_length_unit"
+    t.integer "pieces_count"
+    t.decimal "waste_length", precision: 7, scale: 4
+    t.string "waste_length_unit"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_cut_yields_on_project_id"
+  end
+
+  create_table "miter_frames", force: :cascade do |t|
+    t.decimal "inside_width", precision: 7, scale: 4
+    t.string "inside_width_unit"
+    t.decimal "inside_height", precision: 7, scale: 4
+    t.string "inside_height_unit"
+    t.decimal "board_width", precision: 6, scale: 4
+    t.string "board_width_unit"
+    t.decimal "joint_angle", precision: 5, scale: 3
+    t.decimal "miter_angle_one", precision: 5, scale: 3
+    t.decimal "miter_angle_two", precision: 5, scale: 3
+    t.decimal "piece_length", precision: 7, scale: 4
+    t.string "piece_length_unit"
+    t.decimal "total_material", precision: 8, scale: 4
+    t.string "total_material_unit"
+    t.decimal "waste_length", precision: 7, scale: 4
+    t.string "waste_length_unit"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_miter_frames_on_project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "project_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
 
   create_table "solid_cable_messages", force: :cascade do |t|
     t.binary "channel", null: false
@@ -156,6 +200,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_202311) do
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "cut_yields", "projects"
+  add_foreign_key "miter_frames", "projects"
+  add_foreign_key "projects", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

@@ -1,0 +1,12 @@
+<% content_for :title, "Editing cut yield" %>
+
+<h1>Editing cut yield</h1>
+
+<%= render "form", cut_yield: @cut_yield %>
+
+<br>
+
+<div>
+  <%= link_to "Show this cut yield", @cut_yield %> |
+  <%= link_to "Back to cut yields", cut_yields_path %>
+</div>

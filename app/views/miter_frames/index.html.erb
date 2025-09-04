@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Miter frames" %>
+
+<h1>Miter frames</h1>
+
+<div id="miter_frames">
+  <% @miter_frames.each do |miter_frame| %>
+    <%= render miter_frame %>
+    <p>
+      <%= link_to "Show this miter frame", miter_frame %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New miter frame", new_miter_frame_path %>

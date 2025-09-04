@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @miter_frame %>
+
+<div>
+  <%= link_to "Edit this miter frame", edit_miter_frame_path(@miter_frame) %> |
+  <%= link_to "Back to miter frames", miter_frames_path %>
+
+  <%= button_to "Destroy this miter frame", @miter_frame, method: :delete %>
+</div>

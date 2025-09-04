@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @cut_yield %>
+
+<div>
+  <%= link_to "Edit this cut yield", edit_cut_yield_path(@cut_yield) %> |
+  <%= link_to "Back to cut yields", cut_yields_path %>
+
+  <%= button_to "Destroy this cut yield", @cut_yield, method: :delete %>
+</div>

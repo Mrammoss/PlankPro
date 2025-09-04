@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Cut yields" %>
+
+<h1>Cut yields</h1>
+
+<div id="cut_yields">
+  <% @cut_yields.each do |cut_yield| %>
+    <%= render cut_yield %>
+    <p>
+      <%= link_to "Show this cut yield", cut_yield %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New cut yield", new_cut_yield_path %>
