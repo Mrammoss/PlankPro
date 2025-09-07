@@ -8,6 +8,24 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+body {
+  background-color: burlywood
+}
+
+#dynamic-footer {
+  position: fixed;
+  bottom: -100px;
+}
+
+#footer-trigger {
+  position: fixed;
+  bottom: 20px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+
+
 
 @import "custom-image.css";
 @import "bootstrap-utilities.css";

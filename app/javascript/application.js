@@ -11,3 +11,28 @@ window.jQuery = jquery;
 window.$ = jquery;
 import Rails from "@rails/ujs"
 Rails.start();
+
+document.addEventListener("turbo:load", () => {
+  const footer = document.getElementById("dynamic-footer");
+  const trigger = document.getElementById("footer-trigger");
+
+  if (!footer || !trigger) return;
+  trigger.addEventListener("mouseenter", () => {
+    footer.style.bottom = "0";
+  });
+
+  trigger.addEventListener("mouseleave", () => {
+    footer.style.bottom = "-100px";
+  });
+
+  trigger.addEventListener("click", () => {
+    if (footer.style.bottom === "0px") {
+      footer.style.bottom = "-100px";
+    }
+    else {
+      footer.style.bottom = "0";
+    }
+
+  });
+
+});

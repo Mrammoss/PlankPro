@@ -39,5 +39,17 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+
+    <% unless controller_name == "home" && action_name == "index" %>
+      <div id="footer-trigger" class="footer-icon" > 
+      <%= image_tag "icons/up-arrow.png", width:32, height:32 %>
+      </div>
+      <footer id="dynamic-footer" class="bg-dark text-light">
+        <%= link_to "Projects", projects_path, class: "text-white mx-3 fw-bold"%>
+        <%= link_to "Cut Yields", cut_yields_path, class: "text-white mx-3 fw-bold" %>
+        <%= link_to "Miter Frames", miter_frames_path, class: "text-white mx-3 fw-bold" %>
+      
+    </footer>
+    <% end %>
   </body>
 </html>

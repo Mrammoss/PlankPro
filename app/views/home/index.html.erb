@@ -1,13 +1,51 @@
-<h1>Welcome to PlankPro</h1>
-
-
+<div class= "container text-center">
+  <h1>Welcome to PlankPro</h1>
+</div>
 
 <% if policy(:home).show_links? %>
-<p>link to projects</p>
+  <div class = "d-flex justify-content-center align-items-center gap-4" >
 
+    <%= link_to projects_path, id: "projects-link", class: "svg-projects-link" do %>
+      <%= image_tag 'https://www.svgrepo.com/show/500443/tools.svg', width: 96 %>
+    <% end %>
 
-<p>link to miter</p>
+    <%= link_to cut_yields_path, id: "cut_yields", class: "svg-cut-yields-link" do %>
+      <%= image_tag 'https://www.svgrepo.com/show/219275/saw.svg', width: 96 %>
+    <% end %>
 
-<p> link to cut yield </p>
+    <%= link_to miter_frames_path, id: "miter_frames", class: "svg-miter-link" do %>
+      <%= image_tag 'https://www.svgrepo.com/show/361672/angle.svg', width: 96 %>
+    <% end %>
+
+  </div>
 <% else%>
+  <div class= "container text-center">
+    <div class= "row align-items-center">
+      <h2>Log in</h2>
+
+      <%= form_for(@resource, as: @resource_name, url: session_path(@resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <% if @devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Log in" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 <% end %>
