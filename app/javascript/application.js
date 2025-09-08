@@ -19,28 +19,34 @@ document.addEventListener("turbo:load", () => {
 
   if (!footer || !trigger || !icon) return;
 
-  const upArrow = "icon.dataset.up";
-  const downArrow = "icon.dataset.down";
+  const upArrow = icon.dataset.up;
+  const downArrow = icon.dataset.down;
 
+  const footerHeight = 100;
 
   const showFooter = () => {
-    footer.style.bottom = "0";
+    footer.style.bottom = "0px";
+    trigger.style.bottom = footerHeight + "px"
     icon.src = downArrow;
   };
 
   const hideFooter = () => {
-    footer.style.bottom = "-100px";
+    footer.style.bottom = `-${footerHeight}px`;
+    trigger.style.bottom = "0px";
     icon.src = upArrow;
   };
 
   let isHovering = false;
+  let isLocked = false;
 
   const hoverOn = () => {
+    if (isLocked) return;
     isHovering = true;
     showFooter();
   };
 
   const hoverOff = () => {
+    if (isLocked) return;
     isHovering = false;
     setTimeout(() => {
       if (!isHovering) hideFooter();
@@ -54,10 +60,12 @@ document.addEventListener("turbo:load", () => {
   footer.addEventListener("mouseleave", hoverOff);
 
   trigger.addEventListener("click", () => {
-    if (footer.style.bottom === "0px") {
+    if (isLocked) {
+      isLocked = false;
       hideFooter();
     }
     else {
+      isLocked = true;
       showFooter();
     }
 
