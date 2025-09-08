@@ -15,22 +15,50 @@ Rails.start();
 document.addEventListener("turbo:load", () => {
   const footer = document.getElementById("dynamic-footer");
   const trigger = document.getElementById("footer-trigger");
+  const icon = document.getElementById("footer-icon");
 
-  if (!footer || !trigger) return;
-  trigger.addEventListener("mouseenter", () => {
+  if (!footer || !trigger || !icon) return;
+
+  const upArrow = "icon.dataset.up";
+  const downArrow = "icon.dataset.down";
+
+
+  const showFooter = () => {
     footer.style.bottom = "0";
-  });
+    icon.src = downArrow;
+  };
 
-  trigger.addEventListener("mouseleave", () => {
+  const hideFooter = () => {
     footer.style.bottom = "-100px";
-  });
+    icon.src = upArrow;
+  };
+
+  let isHovering = false;
+
+  const hoverOn = () => {
+    isHovering = true;
+    showFooter();
+  };
+
+  const hoverOff = () => {
+    isHovering = false;
+    setTimeout(() => {
+      if (!isHovering) hideFooter();
+    }, 50);
+  };
+
+  trigger.addEventListener("mouseenter", hoverOn);
+  trigger.addEventListener("mouseleave", hoverOff);
+
+  footer.addEventListener("mouseenter", hoverOn);
+  footer.addEventListener("mouseleave", hoverOff);
 
   trigger.addEventListener("click", () => {
     if (footer.style.bottom === "0px") {
-      footer.style.bottom = "-100px";
+      hideFooter();
     }
     else {
-      footer.style.bottom = "0";
+      showFooter();
     }
 
   });
