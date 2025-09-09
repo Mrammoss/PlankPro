@@ -24,4 +24,37 @@
 #
 class CutYield < ApplicationRecord
   belongs_to :project
+
+  SAW_THICKNESS = Rational(1, 8)
+
+  def combine_board_length
+    return if board_length_whole.blank? && board_length_numerator.blank? && board_length_denominator.blank?
+
+    whole = board_length_whole.to_i
+    numerator = board_length_numerator.to_i
+    denominator = board_length_denominator.to_i
+
+    denominator = 1 if denominator.zero?
+    self.board_length = Rational(whole) + Rational(numerator, denominator)
+  end
+
+  def combine_piece_length
+    return if piece_length_whole.blank? && piece_length_length_numerator.blank? && piece_length_denominator.blank?
+
+    whole = piece_length_whole.to_i
+    numerator = piece_length_numerator.to_i
+    denominator = piece_length_denominator.to_i
+
+    denominator = 1 if denominator.zero?
+    self.piece_length = Rational(whole) + Rational(numerator, denominator)
+  end
+
+  def pieces_count
+    return 0 if piece_length.to_f.zero?
+    ((board_length - SAW_THICKNESS) / piece_length).floor
+  end
+
+  def waste_length
+    board_length - (pieces_fit * piece_length + SAW_THICKNESS * (pieces_count - 1))
+  end
 end
