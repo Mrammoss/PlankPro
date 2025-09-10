@@ -24,10 +24,11 @@
 #
 class CutYield < ApplicationRecord
   belongs_to :project
+  before_save :calculate_waste_length_decimal
 
   SAW_THICKNESS = Rational(1, 8)
 
-  before_validation :combine_board_length, combine_piece_length
+  before_validation :combine_board_length, :combine_piece_length
 
   def format_fraction(rational)
     return "" if rational.nil?
@@ -41,6 +42,7 @@ class CutYield < ApplicationRecord
       "#{remainder.numerator}/#{remainder.denominator}"
     else
       "#{whole} #{remainder.numerator}/#{remainder.denominator}"
+    end
   end
 
   def board_length_display
@@ -49,7 +51,11 @@ class CutYield < ApplicationRecord
 
   def piece_length_display
     format_fraction(piece_length)
-  end 
+  end
+
+  def waste_length_display
+    format_fraction(waste_length)
+  end
 
   def combine_board_length
     return if board_length_whole.blank? && board_length_numerator.blank? && board_length_denominator.blank?
@@ -73,12 +79,17 @@ class CutYield < ApplicationRecord
     self.piece_length = Rational(whole) + Rational(numerator, denominator)
   end
 
+  def waste_length
+    board_length - (pieces_count * piece_length + SAW_THICKNESS * (pieces_count - 1))
+  end
+
   def pieces_count
     return 0 if piece_length.to_f.zero?
     ((board_length + SAW_THICKNESS) / (piece_length + SAW_THICKNESS)).floor
   end
 
-  def waste_length
-    board_length - (pieces_count * piece_length + SAW_THICKNESS * (pieces_count - 1))
+  def calculate_waste_length_decimal
+    self.waste_length = waste_length.to_f
   end
-end
+
+end  
