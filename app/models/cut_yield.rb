@@ -27,6 +27,30 @@ class CutYield < ApplicationRecord
 
   SAW_THICKNESS = Rational(1, 8)
 
+  before_validation :combine_board_length, combine_piece_length
+
+  def format_fraction(rational)
+    return "" if rational.nil?
+
+    whole = rational.to_i
+    remainder = rational - whole
+
+    if remainder.zero?
+      whole.to_s
+    elsif whole.zero?
+      "#{remainder.numerator}/#{remainder.denominator}"
+    else
+      "#{whole} #{remainder.numerator}/#{remainder.denominator}"
+  end
+
+  def board_length_display
+    format_fraction(board_length)
+  end
+
+  def piece_length_display
+    format_fraction(piece_length)
+  end 
+
   def combine_board_length
     return if board_length_whole.blank? && board_length_numerator.blank? && board_length_denominator.blank?
 
@@ -39,7 +63,7 @@ class CutYield < ApplicationRecord
   end
 
   def combine_piece_length
-    return if piece_length_whole.blank? && piece_length_length_numerator.blank? && piece_length_denominator.blank?
+    return if piece_length_whole.blank? && piece_length_numerator.blank? && piece_length_denominator.blank?
 
     whole = piece_length_whole.to_i
     numerator = piece_length_numerator.to_i
@@ -51,10 +75,10 @@ class CutYield < ApplicationRecord
 
   def pieces_count
     return 0 if piece_length.to_f.zero?
-    ((board_length - SAW_THICKNESS) / piece_length).floor
+    ((board_length + SAW_THICKNESS) / (piece_length + SAW_THICKNESS)).floor
   end
 
   def waste_length
-    board_length - (pieces_fit * piece_length + SAW_THICKNESS * (pieces_count - 1))
+    board_length - (pieces_count * piece_length + SAW_THICKNESS * (pieces_count - 1))
   end
 end
