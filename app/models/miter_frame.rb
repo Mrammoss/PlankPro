@@ -40,14 +40,16 @@ class MiterFrame < ApplicationRecord
   attr_accessor :outside_length_whole, :outside_length_numerator, :outside_length_denominator
   attr_accessor :board_width_whole, :board_width_numerator, :board_width_denominator
 
+  attr_accessor :outside_length_input
+
   # No more square sides
   before_validation :combine_fractions, :calculate_lengths
 
 
   def combine_fractions
-    self.inside_length = 
-    self.outside_length =
-    self.board_width = 
+    self.inside_length = combine_fraction(inside_length_whole, inside_length_numerator, inside_length_denominator)
+    self.outside_length_input = combine_fraction(outside_length_whole, outside_length_numerator, outside_length_denominator)
+    self.board_width = combine_fraction(board_width_whole, board_width_numerator, board_width_denominator)
   end
 
   def combine_fraction(whole, numerator, denominator)
@@ -55,6 +57,17 @@ class MiterFrame < ApplicationRecord
     numerator = numerator.to_i
     denominator = denominator.to_i
     denominator = 1 if denominator.zero?
+    Rational(whole) + Rational(numerator, denominator)
+  end
+
+  def number_of_sides
+    case shape_type
+    when "triangle" then 3
+    when "rectangle" then 4
+    when "pentagon" then 5
+    when "hexagon" then 6
+    else 4
+    end
   end
 
   def calculate_lengths
@@ -63,11 +76,39 @@ class MiterFrame < ApplicationRecord
 
     n = number_of_sides
     interior_angle = (n - 2) * 180.0 / n
-    
+    self.miter_angle = (180 - interior_angle) / 2.0
+
+    if inside_length.present? && outside_length_input.blank?
+      self.outside_length_input = inside_length + 2 * board_width * Math.sin(miter_angle * Math::PI / 180.0)
+    elsif outside_length_input.present? && inside_length.blank?
+      # inside length from outside length
+      self.inside_length = outside_length_input - 2 * board_width * Math.sin(miter_angle * Math::PI / 180.0)
+    end
+
   end
 
-  def calculate_piece_length
-
+  def format_fraction(rational)
+    return "" if rational.nil?
+    whole = rational.to_i
+    remainder = rational - whole
+    if remainder.zero?
+      whole.to_s
+    elsif whole.zero?
+      "#{remainder.numerator}/#{remainder.denominator}"
+    else
+      "#{whole} #{remainder.numerator}/#{remainder.denominator}"
+    end
   end
 
+  def inside_length_display
+    format_fraction(inside_length)
+  end
+
+  def outside_length_display
+    format_fraction(outside_length_input.to_r)
+  end
+
+  def board_width_display
+    format_fraction(board_width)
+  end
 end
