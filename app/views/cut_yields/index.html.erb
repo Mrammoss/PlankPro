@@ -1,1 +1,38 @@
-<h1>Cut Yield</h1>
+<h1>Cut Yields</h1>
+
+<%= form_with(model: @cut_yield, local: false, id: "cut-yield-form") do |f| %>
+
+<div>
+<h3> Board Length </h3>
+<%= f.label :board_length_whole, "Whole" %>
+<%= f.number_field :board_length_whole, id: "board_length_whole" %>
+
+<%= f.label :board_length_numerator, "Numerator" %>
+<%= f.select :board_length_numerator, options_for_select((0..31).to_a), {}, id: "board_length_numerator" %>
+
+<%= f.label :board_length_denominator, "Denominator" %>
+<%= f.select :board_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "board_length_denominator" %>
+</div>
+
+<div>
+  <h3> Piece Length </h3>
+<%= f.label :Piece_length_whole, "Whole" %>
+<%= f.number_field :piece_length_whole, id: "piece_length_whole" %>
+
+<%= f.label :piece_length_numerator, "Numerator" %>
+<%= f.number_field :piece_length_numerator, id: "piece_length_numerator" %>
+
+<%= f.label :piece_length_denominator, "Denominator" %>
+<%= f.number_field :piece_length_denominator, id: "piece_length_denominator" %>
+</div>
+
+
+<div>
+  <h3>--</h3>\
+  <p>Pieces Count: 
+</div>
+
+
+
+
+<% end %>

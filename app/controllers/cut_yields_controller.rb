@@ -4,6 +4,7 @@ class CutYieldsController < ApplicationController
   # GET /cut_yields or /cut_yields.json
   def index
     @cut_yields = CutYield.all
+    @cut_yield = CutYield.new
   end
 
   # GET /cut_yields/1 or /cut_yields/1.json
