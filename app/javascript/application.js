@@ -6,9 +6,9 @@ import "controllers"
 Turbo.session.drive = false
 
 // Allow UJS alongside Turbo
-import jquery from "jquery";
-window.jQuery = jquery;
-window.$ = jquery;
+// import jquery, { parseHTML } from "jquery";
+// window.jQuery = jquery;
+// window.$ = jquery;
 import Rails from "@rails/ujs"
 Rails.start();
 
@@ -71,4 +71,54 @@ document.addEventListener("turbo:load", () => {
 
   });
 
+});
+
+document.addEventListener("turbo:load", () => {
+  const form = document.getElementById("cut-yield-form");
+  if (!form) return;
+
+  const fields = [
+    "board_length_whole", "board_length_numerator", "board_length_denominator",
+    "piece_length_whole", "piece_length_numerator", "piece_length_denominator"
+  ].map(id => document.getElementById(id));
+
+  const piecesCountPreview = document.getElementById("pieces-count-preview");
+  const wasteLengthPreview = document.getElementById("waste-length-preview");
+  const SAW_THICKNESS = 1 / 8;
+
+  function toRational(whole, numerator, denominator) {
+    denominator = denominator || 1;
+    return parseInt(whole || 0) + (parseInt(numerator || 0) / parseInt(denominator))
+  }
+  function updatePreview() {
+    const boardLength = toRational(
+      document.getElementById("board_length_whole").value,
+      document.getElementById("board_length_numerator").value,
+      document.getElementById("board_length_denominator").value
+    );
+
+    const pieceLength = toRational(
+      document.getElementById("piece_length_whole").value,
+      document.getElementById("piece_length_numerator").value,
+      document.getElementById("piece_length_denominator").value
+    );
+
+    if (!boardLength || !pieceLength) {
+      piecesCountPreview.textContent = 0;
+      wasteLengthPreview.textContent = 0;
+      return;
+    }
+
+    const piecesCount = Math.floor((boardLength + SAW_THICKNESS) / (pieceLength + SAW_THICKNESS));
+    const wasteLength = boardLength - (piecesCount * pieceLength + SAW_THICKNESS * (piecesCount - 1));
+
+
+    piecesCountPreview.textContent = piecesCount;
+    wasteLengthPreview.textContent = wasteLength.toFixed(3);
+  }
+
+  fields.forEach(field => field.addEventListener("change", updatePreview));
+  fields.forEach(field => field.addEventListener("input", updatePreview));
+
+  updatePreview();
 });
