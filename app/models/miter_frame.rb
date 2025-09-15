@@ -14,6 +14,7 @@
 #  miter_angle_two     :decimal(5, 3)
 #  piece_length        :decimal(7, 4)
 #  piece_length_unit   :string
+#  shape_type          :string
 #  total_material      :decimal(8, 4)
 #  total_material_unit :string
 #  waste_length        :decimal(7, 4)

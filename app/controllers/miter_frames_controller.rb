@@ -4,6 +4,7 @@ class MiterFramesController < ApplicationController
   # GET /miter_frames or /miter_frames.json
   def index
     @miter_frames = MiterFrame.all
+    @miter_frame = MiterFrame.new
   end
 
   # GET /miter_frames/1 or /miter_frames/1.json

@@ -15,7 +15,6 @@ class CutYieldsController < ApplicationController
   def new
     @cut_yield = CutYield.new
   end
-
   # GET /cut_yields/1/edit
   def edit
   end

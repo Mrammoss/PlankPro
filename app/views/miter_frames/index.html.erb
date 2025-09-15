@@ -1,16 +1,52 @@
-<p style="color: green"><%= notice %></p>
+<h1>Miter Frames</h1>
 
-<% content_for :title, "Miter frames" %>
 
-<h1>Miter frames</h1>
+<%= form_with(model: @miter_frame, local: false, id: "miter-frame-form") do |f| %>
 
-<div id="miter_frames">
-  <% @miter_frames.each do |miter_frame| %>
-    <%= render miter_frame %>
-    <p>
-      <%= link_to "Show this miter frame", miter_frame %>
-    </p>
-  <% end %>
+<div>
+  <%= f.label :shape_type, "Shape" %>
+  <%= f.select :shape_type, options_for_select(["triangle", "rectangle", "pentagon", "hexagon"], @miter_frame.shape_type), {}, id: "shape_type" %>
 </div>
 
-<%= link_to "New miter frame", new_miter_frame_path %>
+<!-- length -->
+<div>
+<!-- inside length -->
+<div>
+<h3>Inside Length</h3>
+<%= f.label :inside_length_whole, "Whole" %>
+<%= f.number_field :inside_length_whole, id: "inside-length-whole" %>
+
+<%= f.label :inside_length_numerator, "Numerator" %>
+<%= f.number_field :inside_length_numerator, id: "inside-length-numerator" %>
+
+<%= f.label :inside_length_denominator, "Denominator" %>
+<%= f.number_field :inside_length_denominator, id: "inside-length-denominator" %>
+</div>
+<div>
+<h3>Outside Length</h3>
+<!-- outside length -->
+<%= f.label :outside_length_whole, "Whole" %>
+<%= f.number_field :outside_length_whole, id: "outside-length-whole" %>
+
+<%= f.label :outside_length_numerator, "Numerator" %>
+<%= f.number_field :outside_length_numerator, id: "outside-length-numerator" %>
+
+<%= f.label :outside_length_denominator, "Denominator" %>
+<%= f.number_field :outside_length_denominator, id: "outside-length-denominator" %>
+</div>
+<div >
+<h3>Board Width</h3>
+<!-- board width -->
+<%= f.label :board_width_whole, "Whole" %>
+<%= f.number_field :board_width_whole, id: "board-width" %>
+
+<%= f.label :board_width_numerator, "Numerator" %>
+<%= f.select :board_width_numerator, options_for_select(0..31), {}, id: "board-width-numerator" %>
+
+<%= f.label :board_width_denominator, "Denominator" %>
+<%= f.select :board_width_denominator, options_for_select([1,2,4,8,16,32]), id: "board-width-denominator" %>
+
+</div>
+</div>
+
+<% end %>

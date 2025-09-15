@@ -9,10 +9,59 @@
  * Consider organizing styles into separate files for maintainability.
  */
 body {
-  background-color: burlywood
+  margin: 0;
+  background-image: url("/images/andrey-haimin-q2Fyzn-KJOQ-unsplash.jpg");
+  background-size: cover;
 }
 
-footer {background-color: cornflowerblue;}
+header {
+  background-color: cornflowerblue;
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2)
+}
+
+form#cut-yield-form {
+  background-color: white;
+  max-width: 700px;
+  border-radius: 10px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+form#cut-yield-form div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+form#miter-frame-form {
+  background-color: white;
+  max-width: 1000px;
+  border-radius: 10px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+form#miter-frame-form div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+footer {
+  background-color: cornflowerblue;
+}
+
+#login-container {
+  background-color: white;
+  max-width: 500px;
+  border-radius: 10px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
 
 h1 {
   color: white;
@@ -53,7 +102,7 @@ h1 {
   align-items: center;
 }
 
-#footer-icon{
+#footer-icon {
   width: 32px;
   height: 32px;
   display: block
