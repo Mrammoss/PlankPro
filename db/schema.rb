@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_16_064530) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_16_201255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,12 +45,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_064530) do
     t.string "total_material_unit"
     t.decimal "waste_length", precision: 7, scale: 4
     t.string "waste_length_unit"
-    t.bigint "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "shape_type"
     t.float "miter_angle"
-    t.index ["project_id"], name: "index_miter_frames_on_project_id"
+    t.bigint "user_id", null: false
+    t.decimal "inside_length"
+    t.string "name"
+    t.index ["user_id"], name: "index_miter_frames_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -216,7 +218,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_064530) do
   end
 
   add_foreign_key "cut_yields", "users"
-  add_foreign_key "miter_frames", "projects"
+  add_foreign_key "miter_frames", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

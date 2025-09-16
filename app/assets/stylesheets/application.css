@@ -51,6 +51,12 @@ form#miter-frame-form div{
   align-items: center;
 }
 
+.cut-yields-container {
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+}
+
 footer {
   background-color: cornflowerblue;
 }

@@ -3,8 +3,7 @@ class MiterFramesController < ApplicationController
 
   # GET /miter_frames or /miter_frames.json
   def index
-    @miter_frames = MiterFrame.all
-    @miter_frame = MiterFrame.new
+    @miter_frames = current_user.miter_frames.order(created_at: :desc)
   end
 
   # GET /miter_frames/1 or /miter_frames/1.json
@@ -22,16 +21,12 @@ class MiterFramesController < ApplicationController
 
   # POST /miter_frames or /miter_frames.json
   def create
-    @miter_frame = MiterFrame.new(miter_frame_params)
+    @miter_frame = current_user.miter_frames.new(miter_frame_params)
 
-    respond_to do |format|
-      if @miter_frame.save
-        format.html { redirect_to @miter_frame, notice: "Miter frame was successfully created." }
-        format.json { render :show, status: :created, location: @miter_frame }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @miter_frame.errors, status: :unprocessable_entity }
-      end
+    if @miter_frame.save
+      redirect_to miter_frames_path, notice: "Miter frame added successfully"
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -63,22 +58,18 @@ class MiterFramesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def miter_frame_params
     params.require(:miter_frame).permit(
-      :inside_width,
-      :inside_width_unit,
-      :inside_height,
-      :inside_height_unit,
-      :board_width,
-      :board_width_unit,
-      :joint_angle,
-      :miter_angle_one,
-      :miter_angle_two,
-      :piece_length,
-      :piece_length_unit,
-      :total_material,
-      :total_material_unit,
-      :waste_length,
-      :waste_length_unit,
-      :project_id
+      :name,
+      :shape_type,
+      :inside_length_whole,
+      :inside_length_numerator,
+      :inside_length_denominator,
+      :outside_length_whole,
+      :outside_length_numerator,
+      :outside_length_denominator,
+      :board_width_whole,
+      :board_width_numerator,
+      :board_width_denominator,
+      :miter_angle
     )
   end
 end

@@ -3,12 +3,12 @@ class CutYieldsController < ApplicationController
 
   # GET /cut_yields or /cut_yields.json
   def index
-    @cut_yield = CutYield.new
-    @cut_yields = current_user.cut_yields
+    @cut_yields = current_user.cut_yields.order(created_at: :desc)
   end
 
   # GET /cut_yields/1 or /cut_yields/1.json
   def show
+    @cut_yield = current_user.cut_yield.find(params[:id])
   end
 
   # GET /cut_yields/new

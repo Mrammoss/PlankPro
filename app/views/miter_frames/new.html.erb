@@ -1,11 +1,67 @@
-<% content_for :title, "New miter frame" %>
+<h1>Miter Frames</h1>
 
-<h1>New miter frame</h1>
+<%= form_with(model: @miter_frame, local: true, id: "miter-frame-form") do |f| %>
 
-<%= render "form", miter_frame: @miter_frame %>
+  <div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :shape_type, "Shape" %>
+    <%= f.select :shape_type, options_for_select(["triangle", "rectangle", "pentagon", "hexagon"], @miter_frame.shape_type), {}, id: "shape_type" %>
+  </div>
 
-<br>
+  <!-- length -->
+  <div>
+    <!-- inside length -->
+    <div>
+      <h3>Inside Length</h3>
+      <%= f.label :inside_length_whole, "Whole" %>
+      <%= f.number_field :inside_length_whole, id: "inside-length-whole" %>
 
-<div>
-  <%= link_to "Back to miter frames", miter_frames_path %>
-</div>
+      <%= f.label :inside_length_numerator, "Numerator" %>
+      <%= f.select :inside_length_numerator, options_for_select(0..31), {}, id: "inside-length-numerator" %>
+
+      <%= f.label :inside_length_denominator, "Denominator" %>
+      <%= f.select :inside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "inside-length-denominator" %>
+    </div>
+    <div>
+      <h3>Outside Length</h3>
+      <!-- outside length -->
+      <%= f.label :outside_length_whole, "Whole" %>
+      <%= f.number_field :outside_length_whole, id: "outside-length-whole" %>
+
+      <%= f.label :outside_length_numerator, "Numerator" %>
+      <%= f.select :outside_length_numerator, options_for_select(0..31), {}, id: "outside-length-numerator" %>
+
+      <%= f.label :outside_length_denominator, "Denominator" %>
+      <%= f.select :outside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "outside-length-denominator" %>
+    </div>
+    <div >
+      <h3>Board Width</h3>
+      <!-- board width -->
+      <%= f.label :board_width_whole, "Whole" %>
+      <%= f.number_field :board_width_whole, id: "board-width-whole" %>
+
+      <%= f.label :board_width_numerator, "Numerator" %>
+      <%= f.select :board_width_numerator, options_for_select(0..31), {}, id: "board-width-numerator" %>
+
+      <%= f.label :board_width_denominator, "Denominator" %>
+      <%= f.select :board_width_denominator, options_for_select([1,2,4,8,16,32]), id: "board-width-denominator" %>
+
+    </div>
+
+    <!-- Results -->
+    <div>
+    <h3 style="color: blue" >Results</h3>
+      <p>Miter Angle: <span id="miter-angle"><%= @miter_frame.miter_angle %></span>°</p>
+      <p>Inside Length: <span id="inside-length-preview"></span> in</p>
+      <p>Outside Length: <span id="outside-length-preview"></span> in</p>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit "Calculate Miter Frame" %>
+  </div>
+
+<% end %>

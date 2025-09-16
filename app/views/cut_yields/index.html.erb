@@ -1,44 +1,17 @@
 <h1>Cut Yields</h1>
 
-<%= form_with(model: @cut_yield, local: true, id: "cut-yield-form") do |f| %>
+<% link_to "New Cut Yield", new_cut_yield_path, class: "btn" %>
+<div class="cut-yields-container">
+<ul>
 
-
-  <div>
-    <h3>Project Name</h3>
-    <%= f.label :name, "Cut Yield Name" %>
-    <%= f.text_field :name%>
-  </div>
-
-  <div>
-    <h3> Board Length </h3>
-    <%= f.label :board_length_whole, "Whole" %>
-    <%= f.number_field :board_length_whole, id: "board_length_whole" %>
-
-    <%= f.label :board_length_numerator, "Numerator" %>
-    <%= f.select :board_length_numerator, options_for_select((0..31).to_a), {}, id: "board_length_numerator" %>
-
-    <%= f.label :board_length_denominator, "Denominator" %>
-    <%= f.select :board_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "board_length_denominator" %>
-  </div>
-
-  <div>
-    <h3> Piece Length </h3>
-    <%= f.label :piece_length_whole, "Whole" %>
-    <%= f.number_field :piece_length_whole, id: "piece_length_whole" %>
-
-    <%= f.label :piece_length_numerator, "Numerator" %>
-    <%= f.select :piece_length_numerator, options_for_select((0..31).to_a), {},  id: "piece_length_numerator" %>
-
-    <%= f.label :piece_length_denominator, "Denominator" %>
-    <%= f.select :piece_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "piece_length_denominator" %>
-  </div>
-
-  <div>
-    <h3>Results</h3>
-    <p>Pieces Count: <span id="pieces-count-preview">0</span></p>
-    <p>Waste Length: <span id="waste-length-preview">0</span> in</p>
-  </div>
-
-  <%= f.submit "Save Cut Yield" %>
-
-<% end %>
+  <% @cut_yields.each do |cy| %>
+    <li>
+      <strong><%= cy.name %></strong><br>
+      <p>Board Length: <%= cy.board_length_display %></p>
+      <p>Piece Length: <%= cy.piece_length_display %></p>
+      <p>Pieces Count: <%= cy.pieces_count%></p>
+      <p>Waste Length: <%= cy.waste_length_display %></p>
+    </li>
+  <% end %>
+</ul>
+</div>

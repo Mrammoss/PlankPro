@@ -7,12 +7,14 @@
 #  board_width_unit    :string
 #  inside_height       :decimal(7, 4)
 #  inside_height_unit  :string
+#  inside_length       :decimal(, )
 #  inside_width        :decimal(7, 4)
 #  inside_width_unit   :string
 #  joint_angle         :decimal(5, 3)
 #  miter_angle         :float
 #  miter_angle_one     :decimal(5, 3)
 #  miter_angle_two     :decimal(5, 3)
+#  name                :string
 #  piece_length        :decimal(7, 4)
 #  piece_length_unit   :string
 #  shape_type          :string
@@ -22,15 +24,15 @@
 #  waste_length_unit   :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  project_id          :bigint           not null
+#  user_id             :bigint           not null
 #
 # Indexes
 #
-#  index_miter_frames_on_project_id  (project_id)
+#  index_miter_frames_on_user_id  (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (project_id => projects.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class MiterFrame < ApplicationRecord
   belongs_to :user
