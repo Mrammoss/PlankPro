@@ -109,8 +109,9 @@ document.addEventListener("turbo:load", () => {
       return;
     }
 
-    const piecesCount = Math.floor((boardLength + SAW_THICKNESS) / (pieceLength + SAW_THICKNESS));
-    const wasteLength = boardLength - (piecesCount * pieceLength + SAW_THICKNESS * (piecesCount - 1));
+    const piecesCount = Math.floor(boardLength / (pieceLength + SAW_THICKNESS));
+    const totalCuts = piecesCount;
+    const wasteLength = boardLength - (piecesCount * pieceLength + totalCuts * SAW_THICKNESS);
 
 
     piecesCountPreview.textContent = piecesCount;

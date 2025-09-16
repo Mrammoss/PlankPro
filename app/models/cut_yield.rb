@@ -83,7 +83,9 @@ class CutYield < ApplicationRecord
   end
 
   def calculated_waste_length
-    board_length - (pieces_count * piece_length + SAW_THICKNESS * (pieces_count - 1))
+    pieces = calculated_pieces_count
+    total_cuts = pieces
+    board_length - (pieces * piece_length + total_cuts * SAW_THICKNESS )
   end
 
   def calculated_pieces_count
