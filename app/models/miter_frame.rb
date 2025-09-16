@@ -10,6 +10,7 @@
 #  inside_width        :decimal(7, 4)
 #  inside_width_unit   :string
 #  joint_angle         :decimal(5, 3)
+#  miter_angle         :float
 #  miter_angle_one     :decimal(5, 3)
 #  miter_angle_two     :decimal(5, 3)
 #  piece_length        :decimal(7, 4)

@@ -122,3 +122,128 @@ document.addEventListener("turbo:load", () => {
 
   updatePreview();
 });
+
+document.addEventListener("turbo:load", () => {
+  const form = document.getElementById("miter-frame-form");
+  if (!form) return;
+
+  const miterAngleSpan = document.getElementById("miter-angle");
+  const insidePreview = document.getElementById("inside-length-preview");
+  const outsidePreview = document.getElementById("outside-length-preview");
+
+
+  const fieldIds = [
+    "inside-length-whole",
+    "inside-length-numerator",
+    "inside-length-denominator",
+    "outside-length-whole",
+    "outside-length-numerator",
+    "outside-length-denominator",
+    "board-width-whole",
+    "board-width-numerator",
+    "board-width-denominator",
+    "shape_type"
+  ]
+
+  const fields = fieldIds.map(id => document.getElementById(id)).filter(el => el);
+
+  function getValue(id, defaultValue = 0) {
+    const el = document.getElementById(id);
+    return el ? el.value : defaultValue;
+  }
+
+
+  function toDecimal(whole, numerator, denominator) {
+
+    whole = parseInt(whole || 0);
+    numerator = parseInt(numerator || 0);
+    denominator = parseInt(denominator || 1);
+    return whole + numerator / denominator;
+  }
+
+  function formatFraction(decimal) {
+    const whole = Math.floor(decimal);
+    let remainder = decimal - whole;
+    const precision = 32;
+    let numerator = Math.round(remainder * precision);
+    let denominator = precision;
+    // simplify for better tape measure type fractions
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const divisor = gcd(numerator, denominator);
+    numerator /= divisor;
+    denominator /= divisor;
+
+    if (numerator === 0) return whole.toString();
+    if (whole === 0) return `${numerator}/${denominator}`;
+    return `${whole} ${numerator}/${denominator}`;
+  }
+
+  function numberOfSides(shape) {
+    switch (shape) {
+      case "triangle": return 3;
+      case "rectangle": return 4;
+      case "pentagon": return 5;
+      case "hexagon": return 6;
+      default: return 4;
+    }
+  }
+
+  function updatePreview() {
+    const shape = getValue("shape_type", "rectangle");
+    const n = numberOfSides(shape);
+
+    const inside = toDecimal(
+      getValue("inside-length-whole"),
+      getValue("inside-length-numerator"),
+      getValue("inside-length-denominator")
+    );
+
+    const outside = toDecimal(
+      getValue("outside-length-whole"),
+      getValue("outside-length-numerator"),
+      getValue("outside-length-denominator")
+    );
+
+    const board = toDecimal(
+      getValue("board-width-whole"),
+      getValue("board-width-numerator"),
+      getValue("board-width-denominator")
+
+    );
+
+    if (!board || !n) return;
+
+    const interiorAngle = ((n - 2) * 180) / n;
+    const miterAngle = (180 - interiorAngle) / 2;
+    miterAngleSpan.textContent = miterAngle.toFixed(2);
+
+    const offset = 2 * board * Math.sin(miterAngle * Math.PI / 180);
+
+    if (inside && !outside) {
+      const outsideVal = inside + offset;
+      outsidePreview.textContent = formatFraction(outsideVal);
+      insidePreview.textContent = formatFraction(inside);
+    }
+    else if (outside && !inside) {
+      const insideVal = outside - offset;
+      insidePreview.textContent = formatFraction(insideVal);
+      outsidePreview.textContent = formatFraction(outside);
+    }
+    else {
+      insidePreview.textContent = "";
+      outsidePreview.textContent = "";
+
+    }
+  }
+
+  fields.forEach(field => {
+    if (field) {
+      field.addEventListener("change", updatePreview);
+      field.addEventListener("input", updatePreview);
+    }
+  });
+
+  updatePreview();
+
+
+});
