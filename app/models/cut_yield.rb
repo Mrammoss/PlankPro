@@ -5,6 +5,7 @@
 #  id                :bigint           not null, primary key
 #  board_length      :decimal(7, 4)
 #  board_length_unit :string
+#  name              :string
 #  piece_length      :decimal(7, 4)
 #  piece_length_unit :string
 #  pieces_count      :integer
@@ -12,18 +13,18 @@
 #  waste_length_unit :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  project_id        :bigint           not null
+#  user_id           :bigint           not null
 #
 # Indexes
 #
-#  index_cut_yields_on_project_id  (project_id)
+#  index_cut_yields_on_user_id  (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (project_id => projects.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class CutYield < ApplicationRecord
-  belongs_to :project
+  belongs_to :user
   before_save :calculate_waste_length_decimal, :calculate_pieces_count
 
   SAW_THICKNESS = Rational(1, 8)
@@ -98,7 +99,7 @@ class CutYield < ApplicationRecord
   end
 
   def calculate_pieces_count
-    self.pieces_count = calculate_pieces_count
+    self.pieces_count = calculated_pieces_count
   end
 
 end  

@@ -18,4 +18,5 @@
 #
 class Project < ApplicationRecord
   belongs_to :user
+  has_many :cut_yields
 end

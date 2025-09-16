@@ -1,6 +1,13 @@
 <h1>Cut Yields</h1>
 
-<%= form_with(model: @cut_yield, local: false, id: "cut-yield-form") do |f| %>
+<%= form_with(model: @cut_yield, local: true, id: "cut-yield-form") do |f| %>
+
+
+  <div>
+    <h3>Project Name</h3>
+    <%= f.label :name, "Cut Yield Name" %>
+    <%= f.text_field :name%>
+  </div>
 
   <div>
     <h3> Board Length </h3>

@@ -33,7 +33,7 @@
 #  fk_rails_...  (project_id => projects.id)
 #
 class MiterFrame < ApplicationRecord
-  belongs_to :project
+  belongs_to :user
 
   SAW_THICKNESS = Rational(1, 8)
 

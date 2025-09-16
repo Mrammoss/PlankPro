@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_15_231618) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_16_064530) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,10 +22,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_231618) do
     t.integer "pieces_count"
     t.decimal "waste_length", precision: 7, scale: 4
     t.string "waste_length_unit"
-    t.bigint "project_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_cut_yields_on_project_id"
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_cut_yields_on_user_id"
   end
 
   create_table "miter_frames", force: :cascade do |t|
@@ -214,7 +215,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_15_231618) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "cut_yields", "projects"
+  add_foreign_key "cut_yields", "users"
   add_foreign_key "miter_frames", "projects"
   add_foreign_key "projects", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

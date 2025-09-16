@@ -1,10 +1,10 @@
 class CutYieldsController < ApplicationController
-  before_action :set_cut_yield, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /cut_yields or /cut_yields.json
   def index
-    @cut_yields = CutYield.all
     @cut_yield = CutYield.new
+    @cut_yields = current_user.cut_yields
   end
 
   # GET /cut_yields/1 or /cut_yields/1.json
@@ -15,22 +15,19 @@ class CutYieldsController < ApplicationController
   def new
     @cut_yield = CutYield.new
   end
+
   # GET /cut_yields/1/edit
   def edit
   end
 
   # POST /cut_yields or /cut_yields.json
   def create
-    @cut_yield = CutYield.new(cut_yield_params)
+    @cut_yield = current_user.cut_yields.new(cut_yield_params)
 
-    respond_to do |format|
-      if @cut_yield.save
-        format.html { redirect_to @cut_yield, notice: "Cut yield was successfully created." }
-        format.json { render :show, status: :created, location: @cut_yield }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @cut_yield.errors, status: :unprocessable_entity }
-      end
+    if @cut_yield.save
+      redirect_to cut_yields_path, notice: "Cut yield added successfully!"
+    else
+      render :index
     end
   end
 
@@ -61,14 +58,13 @@ class CutYieldsController < ApplicationController
 
   def cut_yield_params
     params.require(:cut_yield).permit(
-      :board_length,
-      :board_length_unit,
-      :piece_length,
-      :piece_length_unit,
-      :pieces_count,
-      :waste_length,
-      :waste_length_unit,
-      :project_id
+      :name,
+      :board_length_whole,
+      :board_length_numerator,
+      :board_length_denominator,
+      :piece_length_whole,
+      :piece_length_numerator,
+      :piece_length_denominator,
     )
   end
 end
