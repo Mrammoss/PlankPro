@@ -35,8 +35,7 @@
 class MiterFrame < ApplicationRecord
   belongs_to :project
 
-  SAW_THICKNESS = Rational(1,8)
-
+  SAW_THICKNESS = Rational(1, 8)
 
   attr_accessor :inside_length_whole, :inside_length_numerator, :inside_length_denominator
   attr_accessor :outside_length_whole, :outside_length_numerator, :outside_length_denominator
@@ -46,7 +45,6 @@ class MiterFrame < ApplicationRecord
 
   # No more square sides
   before_validation :combine_fractions, :calculate_lengths
-
 
   def combine_fractions
     self.inside_length = combine_fraction(inside_length_whole, inside_length_numerator, inside_length_denominator)
@@ -73,20 +71,19 @@ class MiterFrame < ApplicationRecord
   end
 
   def calculate_lengths
-
     return if board_width.blank? || number_of_sides.blank?
 
     n = number_of_sides
-    interior_angle = (n - 2) * 180.0 / n
-    self.miter_angle = (180 - interior_angle) / 2.0
+    self.miter_angle = 180.0 / n
+
+    offset = 2 * board_width * Math.tan(Math::PI / n)
 
     if inside_length.present? && outside_length_input.blank?
-      self.outside_length_input = inside_length + 2 * board_width * Math.sin(miter_angle * Math::PI / 180.0)
+      self.outside_length_input = inside_length + offset
     elsif outside_length_input.present? && inside_length.blank?
       # inside length from outside length
-      self.inside_length = outside_length_input - 2 * board_width * Math.sin(miter_angle * Math::PI / 180.0)
+      self.inside_length = outside_length_input - offset
     end
-
   end
 
   def format_fraction(rational)

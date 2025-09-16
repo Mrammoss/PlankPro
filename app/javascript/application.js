@@ -213,11 +213,10 @@ document.addEventListener("turbo:load", () => {
 
     if (!board || !n) return;
 
-    const interiorAngle = ((n - 2) * 180) / n;
-    const miterAngle = (180 - interiorAngle) / 2;
+    const miterAngle = 180 / n;
     miterAngleSpan.textContent = miterAngle.toFixed(2);
 
-    const offset = 2 * board * Math.sin(miterAngle * Math.PI / 180);
+    const offset = 2 * board * Math.tan(Math.PI / n);
 
     if (inside && !outside) {
       const outsideVal = inside + offset;
