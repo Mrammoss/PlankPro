@@ -40,12 +40,11 @@
     <p class="alert"><%= alert %></p>
     <%= yield %>
 
-    <% unless controller_name == "home" && action_name == "index" %>
+    <% if user_signed_in? %>
       <div id="footer-trigger">
         <%= image_tag "icons/up-arrow.png", width:32, height:32, id: "footer-icon", data: { up: asset_path("icons/up-arrow.png"), down: asset_path("icons/down-arrow.png")} %>
       </div>
       <footer id="dynamic-footer" class="bg- text-light">
-        <%= link_to "Projects", projects_path, class: "text-white mx-3 fw-bold"%>
         <%= link_to "Cut Yields", cut_yields_path, class: "text-white mx-3 fw-bold" %>
         <%= link_to "Miter Frames", miter_frames_path, class: "text-white mx-3 fw-bold" %>
 

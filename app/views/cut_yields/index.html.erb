@@ -2,16 +2,14 @@
 
 <% link_to "New Cut Yield", new_cut_yield_path, class: "btn" %>
 <div class="cut-yields-container">
-<ul>
 
   <% @cut_yields.each do |cy| %>
-    <li>
+    <div class="cut-yield-bubble">
       <strong><%= cy.name %></strong><br>
       <p>Board Length: <%= cy.board_length_display %></p>
       <p>Piece Length: <%= cy.piece_length_display %></p>
       <p>Pieces Count: <%= cy.pieces_count%></p>
       <p>Waste Length: <%= cy.waste_length_display %></p>
-    </li>
+    </div>
   <% end %>
-</ul>
 </div>

@@ -4,19 +4,21 @@
 
 <% if policy(:home).show_links? %>
   <div class = "d-flex justify-content-center align-items-center gap-4" >
+    <div class="icon-with-text">
+      <%= link_to new_cut_yield_path, id: "cut_yields", class: "svg-cut-yields-link" do %>
 
-    <%= link_to projects_path, id: "projects-link", class: "svg-projects-link" do %>
-      <%= image_tag 'https://www.svgrepo.com/show/500443/tools.svg', width: 96 %>
-    <% end %>
+        <%= image_tag 'https://www.svgrepo.com/show/219275/saw.svg', width: 96 %>
+        <span>New Cut Yield</span>
+      <% end %>
+    </div>
+    <div class="icon-with-text">
+      <%= link_to new_miter_frame_path, id: "miter_frames", class: "svg-miter-link" do %>
 
-    <%= link_to new_cut_yield_path, id: "cut_yields", class: "svg-cut-yields-link" do %>
-      <%= image_tag 'https://www.svgrepo.com/show/219275/saw.svg', width: 96 %>
-    <% end %>
+        <%= image_tag 'https://www.svgrepo.com/show/361672/angle.svg', width: 96 %>
+        <span>New Miter Frame</span>
 
-    <%= link_to new_miter_frame_path, id: "miter_frames", class: "svg-miter-link" do %>
-      <%= image_tag 'https://www.svgrepo.com/show/361672/angle.svg', width: 96 %>
-    <% end %>
-
+      <% end %>
+    </div>
   </div>
 <% else%>
   <div id="login-container" class= "container text-center">
@@ -47,5 +49,4 @@
       <% end %>
     </div>
   </div>
-
 <% end %>
