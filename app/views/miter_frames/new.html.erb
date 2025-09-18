@@ -3,7 +3,8 @@
 <%= form_with(model: @miter_frame, local: true, id: "miter-frame-form") do |f| %>
 
   <div class="field">
-  <%= f.label :name %>
+  <h3>Project Name</h3>
+  <%= f.label :name, "Miter Frame Name" %>
   <%= f.text_field :name %>
   </div>
   <div>

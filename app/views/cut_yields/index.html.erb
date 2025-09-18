@@ -4,12 +4,18 @@
 <div class="cut-yields-container">
 
   <% @cut_yields.each do |cy| %>
-    <div class="cut-yield-bubble">
-      <strong><%= cy.name %></strong><br>
-      <p>Board Length: <%= cy.board_length_display %></p>
-      <p>Piece Length: <%= cy.piece_length_display %></p>
-      <p>Pieces Count: <%= cy.pieces_count%></p>
-      <p>Waste Length: <%= cy.waste_length_display %></p>
+    <div class="yield-bubble">
+
+      <strong><%= cy.name&.capitalize %></strong><br>
+      <div class="cut-specs-text">
+        <p>Board Length: <%= cy.board_length_display %></p>
+        <p>Piece Length: <%= cy.piece_length_display %></p>
+        <p>Pieces Count: <%= cy.pieces_count%></p>
+        <p>Waste Length: <%= cy.waste_length_display %></p>
+      </div>
+      <div class="bubble-actions">
+        <%= link_to "Delete", cut_yield_path(cy), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-text" %>
+      </div>
     </div>
   <% end %>
 </div>

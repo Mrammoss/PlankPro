@@ -17,21 +17,40 @@ body {
 header {
   background-color: cornflowerblue;
   color: white;
+  height: 50px;
   padding: 1rem 2rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2)
 }
 
+.logo{
+  display: flex;
+  align-items: center;
+}
+
 .icon-with-text{
+  border: 5px dashed cornflowerblue;
   color: white;
-  background-color: rgba(44, 42, 85, 0.65);
+  background-color: rgba(255, 255, 255, 0.65);
   position: relative;
   top: 60px;
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 16px;
   border-radius: 12px;
   gap: 16px;
+  width: 250px;
 }
+
+.new-cut-bubble{
+  background-color: cornflowerblue;
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  color: white;
+  width: 200px;
+}
+
 
 form#cut-yield-form {
   background-color: white;
@@ -69,23 +88,67 @@ form#miter-frame-form div{
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+
+.miter-frames-container {
+  padding: 10px;
+  gap: 16px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
   max-height: 500px;
   overflow-y: auto;
 }
 
-.cut-yield-bubble {
+
+.yield-bubble {
+border: 1px solid tan;
+border-radius: 12px;
 background-color: aliceblue;
 padding: 16px;
 width: 200px;
 transition: transform 0.2s;
 }
 
-.cut-yield-bubble:hover {
+.yield-bubble:hover {
   transform: scale(1.07);
   box-shadow: 0 12px 20px rgba(0,0,0,4);
   z-index: 10;
 }
 
+.miter-frame-bubble:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 20px rgba(0,0,0,4);
+  z-index: 10;
+}
+
+.cut-name-text {
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  background-color: wheat;
+}
+
+.delete-text{
+  background-color: #3D2C7A;
+  border-radius: 4px;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  width: 50px;
+  color: white;
+}
+
+.cut-specs-text {
+  border: 2px dashed wheat;
+  border-radius: 6px;
+  padding-left: 10px;
+  background-color: beige;
+}
 footer {
   background-color: cornflowerblue;
 }

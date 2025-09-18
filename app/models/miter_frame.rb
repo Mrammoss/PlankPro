@@ -55,6 +55,8 @@ class MiterFrame < ApplicationRecord
   end
 
   def combine_fraction(whole, numerator, denominator)
+    return nil if whole.blank? && numerator.blank? && denominator.blank?
+
     whole = whole.to_i
     numerator = numerator.to_i
     denominator = denominator.to_i
@@ -80,10 +82,10 @@ class MiterFrame < ApplicationRecord
 
     offset = 2 * board_width * Math.tan(Math::PI / n)
 
+    # Calculate the missing length if only one is provided
     if inside_length.present? && outside_length_input.blank?
       self.outside_length_input = inside_length + offset
     elsif outside_length_input.present? && inside_length.blank?
-      # inside length from outside length
       self.inside_length = outside_length_input - offset
     end
   end
@@ -100,6 +102,30 @@ class MiterFrame < ApplicationRecord
       "#{whole} #{remainder.numerator}/#{remainder.denominator}"
     end
   end
+
+  def outside_length
+    return nil if inside_length.blank? || board_width.blank? || number_of_sides.blank?
+
+    offset = 2 * board_width * Math.tan(Math::PI / number_of_sides)
+    inside_length + offset
+  end
+
+  def outside_length_show
+  return "" if outside_length.nil?
+
+  # Convert decimal to 32nds
+  total_32nds = (outside_length * 32).round
+  whole = total_32nds / 32
+  remainder = total_32nds % 32
+
+  if remainder.zero?
+    whole.to_s
+  elsif whole.zero?
+    "#{remainder}/32"
+  else
+    "#{whole} #{remainder}/32"
+  end
+end
 
   def inside_length_display
     format_fraction(inside_length)

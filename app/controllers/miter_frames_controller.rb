@@ -1,22 +1,14 @@
 class MiterFramesController < ApplicationController
-  before_action :set_miter_frame, only: %i[ show edit update destroy ]
+  before_action :set_miter_frame, only: [:destroy]
 
   # GET /miter_frames or /miter_frames.json
   def index
-    @miter_frames = current_user.miter_frames.order(created_at: :desc)
-  end
-
-  # GET /miter_frames/1 or /miter_frames/1.json
-  def show
+    @miter_frames = current_user.miter_frames.order(:name)
   end
 
   # GET /miter_frames/new
   def new
     @miter_frame = MiterFrame.new
-  end
-
-  # GET /miter_frames/1/edit
-  def edit
   end
 
   # POST /miter_frames or /miter_frames.json
@@ -31,31 +23,19 @@ class MiterFramesController < ApplicationController
   end
 
   # PATCH/PUT /miter_frames/1 or /miter_frames/1.json
-  def update
-    respond_to do |format|
-      if @miter_frame.update(miter_frame_params)
-        format.html { redirect_to @miter_frame, notice: "Miter frame was successfully updated." }
-        format.json { render :show, status: :ok, location: @miter_frame }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @miter_frame.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /miter_frames/1 or /miter_frames/1.json
   def destroy
-    @miter_frame.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to miter_frames_path, status: :see_other, notice: "Miter frame was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @miter_frame.destroy
+    redirect_to miter_frames_path, notice: "Miter Frame was successfully destroyed."
   end
 
   private
 
-  # Only allow a list of trusted parameters through.
+  def set_miter_frame
+    @miter_frame = current_user.miter_frames.find(params[:id])
+  end
+
   def miter_frame_params
     params.require(:miter_frame).permit(
       :name,
