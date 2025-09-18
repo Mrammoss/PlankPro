@@ -12,9 +12,7 @@
     <%= f.select :shape_type, options_for_select(["triangle", "rectangle", "pentagon", "hexagon"], @miter_frame.shape_type), {}, id: "shape_type" %>
   </div>
 
-  <!-- length -->
   <div>
-    <!-- inside length -->
     <div>
       <h3>Inside Length</h3>
       <%= f.label :inside_length_whole, "Whole" %>
@@ -40,7 +38,6 @@
     </div>
     <div >
       <h3>Board Width</h3>
-      <!-- board width -->
       <%= f.label :board_width_whole, "Whole" %>
       <%= f.number_field :board_width_whole, id: "board-width-whole" %>
 
@@ -52,7 +49,6 @@
 
     </div>
 
-    <!-- Results -->
     <div>
     <h3 style="color: blue" >Results</h3>
       <p>Miter Angle: <span id="miter-angle"><%= @miter_frame.miter_angle %></span>°</p>
