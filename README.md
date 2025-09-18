@@ -25,3 +25,6 @@ bin/server
 
 # Clone Repo 
 https://github.com/Mrammoss/PlankPro.git
+
+```
+![PlankPro Screenshot](app/assets/images/erd/PlankProV4.PNG)
