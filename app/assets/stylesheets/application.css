@@ -19,15 +19,94 @@ header {
   color: white;
   height: 50px;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2)
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2)
 }
 
-.logo{
-  display: flex;
+.login-button {
+  display: inline-block; /* ensures padding and box-shadow work nicely */
+  background: cornflowerblue;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 22px;
+  text-decoration: none; /* removes underline from links */
+  box-shadow: 0 0 2.5px cornflowerblue, 0 0 5px cornflowerblue, 0 0 7.5px cornflowerblue;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.login-button:hover {
+  background: #3b71c1; /* slightly darker on hover */
+  box-shadow: 0 0 5px #3b71c1, 0 0 10px #3b71c1, 0 0 15px #3b71c1;
+}
+
+.sign-up-container{
+  background-color: rgb(255, 255, 255);
+  width: 400px;
+  margin: 50px auto;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.sign-up-button {
+  display: inline-block; /* ensures padding and box-shadow work nicely */
+  background: #3D2C7A;
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 10px;
+  width: 55px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 22px;
+  text-decoration: none; /* removes underline from links */
+  box-shadow: 0 0 2.5px #3D2C7A, 0 0 5px #3D2C7A, 0 0 7.5px #3D2C7A;
+  transition: background 0.2s, box-shadow 0.2s; /* smooth hover */
+}
+
+.sign-up-button:hover {
+  background: #5A3DA0; /* slightly lighter/darker on hover */
+  box-shadow: 0 0 5px #5A3DA0, 0 0 10px #5A3DA0, 0 0 15px #5A3DA0;
+}
+
+.sign-up-button-sign-up-page {
+  display: inline-block; /* ensures padding and box-shadow work nicely */
+  background: #3D2C7A;
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 10px;
+margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 22px;
+  text-decoration: none; /* removes underline from links */
+  box-shadow: 0 0 2.5px #3D2C7A, 0 0 5px #3D2C7A, 0 0 7.5px #3D2C7A;
+  transition: background 0.2s, box-shadow 0.2s; /* smooth hover */
+}
+
+.sign-up-button-sign-up-page:hover {
+  background: #5A3DA0; /* slightly lighter/darker on hover */
+  box-shadow: 0 0 5px #5A3DA0, 0 0 10px #5A3DA0, 0 0 15px #5A3DA0;
+}
+
+
+.logo {
   align-items: center;
+  text-align: center;
 }
 
-.icon-with-text{
+.login-home {
+  background-color: rgb(255, 255, 255);
+  width: 400px;
+  margin: 50px auto;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.icon-with-text {
   border: 5px dashed cornflowerblue;
   color: white;
   background-color: rgba(255, 255, 255, 0.65);
@@ -42,13 +121,14 @@ header {
   width: 250px;
 }
 
-.new-cut-bubble{
+.new-cut-bubble {
   background-color: cornflowerblue;
   display: flex;
   justify-content: center;
   border-radius: 12px;
   color: white;
   width: 200px;
+  max-width: 90%;
 }
 
 
@@ -60,7 +140,7 @@ form#cut-yield-form {
   padding: 2rem;
 }
 
-form#cut-yield-form div{
+form#cut-yield-form div {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -75,7 +155,7 @@ form#miter-frame-form {
   padding: 2rem;
 }
 
-form#miter-frame-form div{
+form#miter-frame-form div {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -105,23 +185,23 @@ form#miter-frame-form div{
 
 
 .yield-bubble {
-border: 1px solid tan;
-border-radius: 12px;
-background-color: aliceblue;
-padding: 16px;
-width: 200px;
-transition: transform 0.2s;
+  border: 1px solid tan;
+  border-radius: 12px;
+  background-color: aliceblue;
+  padding: 16px;
+  width: 200px;
+  transition: transform 0.2s;
 }
 
 .yield-bubble:hover {
   transform: scale(1.07);
-  box-shadow: 0 12px 20px rgba(0,0,0,4);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 4);
   z-index: 10;
 }
 
 .miter-frame-bubble:hover {
   transform: scale(1.07);
-  box-shadow: 0 12px 20px rgba(0,0,0,4);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 4);
   z-index: 10;
 }
 
@@ -133,7 +213,7 @@ transition: transform 0.2s;
   background-color: wheat;
 }
 
-.delete-text{
+.delete-text {
   background-color: #3D2C7A;
   border-radius: 4px;
   display: flex;
@@ -149,17 +229,11 @@ transition: transform 0.2s;
   padding-left: 10px;
   background-color: beige;
 }
+
 footer {
   background-color: cornflowerblue;
 }
 
-#login-container {
-  background-color: white;
-  max-width: 500px;
-  border-radius: 10px;
-  margin: 2rem auto;
-  padding: 2rem;
-}
 
 h1 {
   color: white;
