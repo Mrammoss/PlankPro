@@ -98,6 +98,21 @@ margin-top: 10px;
   text-align: center;
 }
 
+.cut-name{
+  display: flex;
+  justify-content: center;
+}
+
+
+.search-box{
+  background: white;
+  border: solid 2px wheat;
+  margin: auto;
+  border-radius: 5px;
+  justify-content: center;
+  display: flex;
+}
+
 .login-home {
   background-color: rgb(255, 255, 255);
   width: 400px;
