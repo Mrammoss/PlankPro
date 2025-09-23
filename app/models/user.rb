@@ -22,6 +22,8 @@ class User < ApplicationRecord
   has_many :cut_yields
   has_many :miter_frames
 
+  # NOTE: It seems like you're missing an assosiation with projects
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
