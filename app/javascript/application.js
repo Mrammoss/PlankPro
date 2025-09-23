@@ -247,3 +247,18 @@ document.addEventListener("turbo:load", () => {
 
 
 });
+
+// live cut yield search
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("search-cut-yield");
+  const form = document.getElementById("search-form");
+  if (!input || !form) return;
+
+  let timeout;
+
+  input.addEventListener("input", () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => form.requestSubmit(), 300);
+  });
+});

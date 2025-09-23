@@ -1,67 +1,13 @@
-<div id="<%= dom_id cut_yield %>">
-  <p>
-    <strong>:</strong>
-    <%= cut_yield.  %>
-  </p>
+<div class="yield-bubble">
 
-  <p>
-    <strong>Board length:</strong>
-    <%= cut_yield.board_length %>
-  </p>
-
-  <p>
-    <strong>Board length unit:</strong>
-    <%= cut_yield.board_length_unit %>
-  </p>
-
-  <p>
-    <strong>:</strong>
-    <%= cut_yield.  %>
-  </p>
-
-  <p>
-    <strong>Piece length:</strong>
-    <%= cut_yield.piece_length %>
-  </p>
-
-  <p>
-    <strong>Piece length unit:</strong>
-    <%= cut_yield.piece_length_unit %>
-  </p>
-
-  <p>
-    <strong>:</strong>
-    <%= cut_yield.  %>
-  </p>
-
-  <p>
-    <strong>Pieces count:</strong>
-    <%= cut_yield.pieces_count %>
-  </p>
-
-  <p>
-    <strong>:</strong>
-    <%= cut_yield.  %>
-  </p>
-
-  <p>
-    <strong>Waste length:</strong>
-    <%= cut_yield.waste_length %>
-  </p>
-
-  <p>
-    <strong>Waste length unit:</strong>
-    <%= cut_yield.waste_length_unit %>
-  </p>
-
-  <p>
-    <strong>:</strong>
-    <%= cut_yield.  %>
-  </p>
-
-  <p>
-    <strong>Project:</strong>
-    <%= cut_yield.project_id %>
-  </p>
-
+  <strong><%= cut_yield.name&.capitalize %></strong><br>
+  <div class="cut-specs-text">
+    <p>Board Length: <%= cut_yield.board_length_display %></p>
+    <p>Piece Length: <%= cut_yield.piece_length_display %></p>
+    <p>Pieces Count: <%= cut_yield.pieces_count%></p>
+    <p>Waste Length: <%= cut_yield.waste_length_display %></p>
+  </div>
+  <div class="bubble-actions">
+    <%= link_to "Delete", cut_yield_path(cut_yield), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-text" %>
+  </div>
 </div>
