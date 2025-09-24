@@ -1,21 +1,10 @@
 <h1>Miter Frames</h1>
 
+<%= form_with url: miter_frames_path, method: :get, local: false, html: {id: "search-miter-form"} do |f| %>
+  <%= f.text_field :query, id: "search-miter-frame", placeholder: "Search by name...", class: "search-box" %>
+<% end %>
+
+
 <div class="miter-frames-container">
-  <% @miter_frames.each do |mf| %>
-    <div class="yield-bubble">
-      <div class="cut-name">
-        <strong><%= mf.name&.capitalize %></strong><br>
-      </div>
-      <div class="cut-specs-text">
-        <p>Shape: <%= mf.shape_type.capitalize %></p>
-        <p>Inside Length: <%= mf.inside_length_display %> in</p>
-        <p>Outside Length: <%= mf.outside_length_show %> in</p>
-        <p>Board Width: <%= mf.board_width_display %> in</p>
-        <p>Miter Angle: <%= mf.miter_angle %>°</p>
-      </div>
-      <div class="bubble-actions">
-        <%= link_to "Delete", miter_frame_path(mf), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-text" %>
-      </div>
-    </div>
-  <% end %>
+  <%= render partial: "miter_frame", collection: @miter_frames %>
 </div>

@@ -9,6 +9,7 @@
     <p>Pieces Count: <%= cut_yield.pieces_count%></p>
     <p>Waste Length: <%= cut_yield.waste_length_display %></p>
   </div>
+  <br>
   <div class="bubble-actions">
     <%= link_to "Delete", cut_yield_path(cut_yield), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-text" %>
   </div>

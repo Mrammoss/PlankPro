@@ -262,3 +262,16 @@ document.addEventListener("DOMContentLoaded", () => {
     timeout = setTimeout(() => form.requestSubmit(), 300);
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("search-miter-frame");
+  const form = document.getElementById("search-miter-form");
+  if (!input || !form) return;
+
+  let timeout;
+
+  input.addEventListener("input", () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => form.requestSubmit(), 300);
+  });
+});

@@ -99,6 +99,8 @@ margin-top: 10px;
 }
 
 .cut-name{
+  color: #5A3DA0;
+  font-weight: bold;
   display: flex;
   justify-content: center;
 }
