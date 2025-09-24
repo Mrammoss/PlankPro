@@ -48,6 +48,9 @@ class MiterFrame < ApplicationRecord
   # No more square sides
   before_validation :combine_fractions, :calculate_lengths
 
+
+  # NOTE: It seems like you could move this calculations to the separate concern to make this model less overwhelmed. 
+
   def combine_fractions
     self.inside_length = combine_fraction(inside_length_whole, inside_length_numerator, inside_length_denominator)
     self.outside_length_input = combine_fraction(outside_length_whole, outside_length_numerator, outside_length_denominator)

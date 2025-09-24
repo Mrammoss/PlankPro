@@ -19,4 +19,6 @@
 class Project < ApplicationRecord
   belongs_to :user
   has_many :cut_yields
+
+  # NOTE: It seems like you're missing an assosiation with miter_frame here
 end
