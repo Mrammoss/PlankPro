@@ -1,18 +1,18 @@
 <% if policy(:home).show_links? %>
   <div class = "d-flex justify-content-center align-items-center gap-4" >
     <div class="icon-with-text">
-      <%= link_to new_cut_yield_path, id: "cut_yields", class: "svg-cut-yields-link" do %>
+      <%= link_to new_cut_yield_path, id: "cut_yields", class: "svg-cut-yields-link", aria: { label: "Create a new cut yield"} do %>
 
-        <%= image_tag 'https://www.svgrepo.com/show/219275/saw.svg', width: 96 %>
+        <%= image_tag 'https://www.svgrepo.com/show/219275/saw.svg', width: 96, alt: "Saw icon for new cut yield" %>
         <div class="new-cut-bubble">
           <span>New Cut Yield</span>
         </div>
       <% end %>
     </div>
     <div class="icon-with-text">
-      <%= link_to new_miter_frame_path, id: "miter_frames", class: "svg-miter-link" do %>
+      <%= link_to new_miter_frame_path, id: "miter_frames", class: "svg-miter-link", aria: { label: "Create new miter frame"} do %>
 
-        <%= image_tag 'https://www.svgrepo.com/show/361672/angle.svg', width: 96 %>
+        <%= image_tag 'https://www.svgrepo.com/show/361672/angle.svg', width: 96, alt: "Angle icon for new miter frame" %>
         <div class="new-cut-bubble">
           <span>New Miter Frame</span>
         </div>
@@ -27,12 +27,12 @@
     <%= form_for(@resource, as: @resource_name, url: session_path(@resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, aria: {required: true} %>
       </div>
 
       <div class="field">
         <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, autocomplete: "current-password", required: true, aria: {required: true} %>
       </div>
       <br>
       <% if @devise_mapping.rememberable? %>

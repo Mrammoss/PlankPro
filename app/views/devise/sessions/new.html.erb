@@ -1,15 +1,16 @@
-<h2>Log in</h2>
 
-<div class="login-container">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<div class="login-home">
+<h2>Log in</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", required: true %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -18,11 +19,10 @@
       <%= f.label :remember_me %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+<br>
+  <div>
+    <%= f.submit "Log in", class: "login-button" %>
   </div>
 <% end %>
-</div>
-
 <%= render "devise/shared/links" %>
+</div>
