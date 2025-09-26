@@ -20,11 +20,17 @@ PlankPro is a Ruby on Rails application designed to help woodworkers, DIYers, an
 
 ### Setup
 ```
+# Landing Page
+Sign-up/sign-in to get to landing page
+
 # Start the Server
 bin/server
 
 # Clone Repo 
 https://github.com/Mrammoss/PlankPro.git
+
+# Project Board
+https://github.com/users/Mrammoss/projects/1/views/1
 
 ```
 ![PlankPro Screenshot](app/assets/images/erd/PlankProV4.PNG)
