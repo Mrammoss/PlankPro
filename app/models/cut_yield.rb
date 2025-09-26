@@ -101,5 +101,4 @@ class CutYield < ApplicationRecord
   def calculate_pieces_count
     self.pieces_count = calculated_pieces_count
   end
-
-end  
+end

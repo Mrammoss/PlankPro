@@ -1,6 +1,6 @@
 class CutYieldsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cut_yield, only: [:destroy]
+  before_action :set_cut_yield, only: [ :destroy ]
 
   # GET /cut_yields or /cut_yields.json
   def index

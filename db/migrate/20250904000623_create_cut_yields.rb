@@ -17,7 +17,7 @@ class CreateCutYields < ActiveRecord::Migration[8.0]
       t.integer :piece_length_numerator
       t.integer :piece_length_denominator
 
-  
+
 
       t.integer :pieces_count
 

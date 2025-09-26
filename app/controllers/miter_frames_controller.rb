@@ -1,5 +1,5 @@
 class MiterFramesController < ApplicationController
-  before_action :set_miter_frame, only: [:destroy]
+  before_action :set_miter_frame, only: [ :destroy ]
 
   # GET /miter_frames or /miter_frames.json
   def index

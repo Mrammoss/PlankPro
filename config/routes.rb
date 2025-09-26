@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   get "home/index"
   root to: "home#index"
 
-  resources :cut_yields, only: [:index, :new, :create, :destroy] do
+  resources :cut_yields, only: [ :index, :new, :create, :destroy ] do
     collection do
       post :calculate
     end
   end
 
-  resources :miter_frames, only: [:index, :new, :create, :destroy] do
+  resources :miter_frames, only: [ :index, :new, :create, :destroy ] do
     collection do
       post :calculate
     end
