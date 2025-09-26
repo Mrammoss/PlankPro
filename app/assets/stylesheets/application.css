@@ -23,7 +23,8 @@ header {
 }
 
 .login-button {
-  display: inline-block; /* ensures padding and box-shadow work nicely */
+  display: inline-block;
+  /* ensures padding and box-shadow work nicely */
   background: cornflowerblue;
   color: white;
   font-weight: bold;
@@ -32,17 +33,48 @@ header {
   border-radius: 8px;
   cursor: pointer;
   padding: 10px 22px;
-  text-decoration: none; /* removes underline from links */
+  text-decoration: none;
+  /* removes underline from links */
   box-shadow: 0 0 2.5px cornflowerblue, 0 0 5px cornflowerblue, 0 0 7.5px cornflowerblue;
   transition: background 0.2s, box-shadow 0.2s;
 }
 
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block
+}
+
+.tooltip-text {
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.tooltip-wrapper:hover .tooltip-text,
+.tooltip-wrapper:focus-within .tooltip-text{
+  visibility: visible;
+  opacity: .8;
+}
+
 .login-button:hover {
-  background: #3b71c1; /* slightly darker on hover */
+  background: #3b71c1;
+  /* slightly darker on hover */
   box-shadow: 0 0 5px #3b71c1, 0 0 10px #3b71c1, 0 0 15px #3b71c1;
 }
 
-.sign-up-container{
+.sign-up-container {
   background-color: rgb(255, 255, 255);
   width: 400px;
   margin: 50px auto;
@@ -51,7 +83,8 @@ header {
 }
 
 .sign-up-button {
-  display: inline-block; /* ensures padding and box-shadow work nicely */
+  display: inline-block;
+  /* ensures padding and box-shadow work nicely */
   background: #3D2C7A;
   color: white;
   font-weight: bold;
@@ -61,34 +94,41 @@ header {
   border-radius: 8px;
   cursor: pointer;
   padding: 10px 22px;
-  text-decoration: none; /* removes underline from links */
+  text-decoration: none;
+  /* removes underline from links */
   box-shadow: 0 0 2.5px #3D2C7A, 0 0 5px #3D2C7A, 0 0 7.5px #3D2C7A;
-  transition: background 0.2s, box-shadow 0.2s; /* smooth hover */
+  transition: background 0.2s, box-shadow 0.2s;
+  /* smooth hover */
 }
 
 .sign-up-button:hover {
-  background: #5A3DA0; /* slightly lighter/darker on hover */
+  background: #5A3DA0;
+  /* slightly lighter/darker on hover */
   box-shadow: 0 0 5px #5A3DA0, 0 0 10px #5A3DA0, 0 0 15px #5A3DA0;
 }
 
 .sign-up-button-sign-up-page {
-  display: inline-block; /* ensures padding and box-shadow work nicely */
+  display: inline-block;
+  /* ensures padding and box-shadow work nicely */
   background: #3D2C7A;
   color: white;
   font-weight: bold;
   border: none;
   margin-bottom: 10px;
-margin-top: 10px;
+  margin-top: 10px;
   border-radius: 8px;
   cursor: pointer;
   padding: 10px 22px;
-  text-decoration: none; /* removes underline from links */
+  text-decoration: none;
+  /* removes underline from links */
   box-shadow: 0 0 2.5px #3D2C7A, 0 0 5px #3D2C7A, 0 0 7.5px #3D2C7A;
-  transition: background 0.2s, box-shadow 0.2s; /* smooth hover */
+  transition: background 0.2s, box-shadow 0.2s;
+  /* smooth hover */
 }
 
 .sign-up-button-sign-up-page:hover {
-  background: #5A3DA0; /* slightly lighter/darker on hover */
+  background: #5A3DA0;
+  /* slightly lighter/darker on hover */
   box-shadow: 0 0 5px #5A3DA0, 0 0 10px #5A3DA0, 0 0 15px #5A3DA0;
 }
 
@@ -98,7 +138,7 @@ margin-top: 10px;
   text-align: center;
 }
 
-.cut-name{
+.cut-name {
   color: #5A3DA0;
   font-weight: bold;
   display: flex;
@@ -106,7 +146,7 @@ margin-top: 10px;
 }
 
 
-.search-box{
+.search-box {
   background: white;
   border: solid 2px wheat;
   margin: auto;

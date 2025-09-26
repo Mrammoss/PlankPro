@@ -2,7 +2,6 @@
 
 <%= form_with(model: @cut_yield, local: true, id: "cut-yield-form") do |f| %>
 
-
   <div>
     <h3>Project Name</h3>
     <%= f.label :name, "Cut Yield Name" %>
@@ -12,13 +11,19 @@
   <div>
     <h3> Board Length </h3>
     <%= f.label :board_length_whole, "Whole" %>
-    <%= f.number_field :board_length_whole, id: "board_length_whole" %>
+    <%= f.number_field :board_length_whole, id: "board_length_whole", required: true, aria: {required: true} %>
 
-    <%= f.label :board_length_numerator, "Numerator" %>
-    <%= f.select :board_length_numerator, options_for_select((0..31).to_a), {}, id: "board_length_numerator" %>
+    <div class="tooltip-wrapper">
+      <%= f.label :board_length_numerator, "Numerator" %>
+      <%= f.select :board_length_numerator, options_for_select((0..31).to_a), {}, id: "board_length_numerator", aria: { describedby: "board-numerator-tooltip"} %>
+      <span id="board-numerator-tooltip" class="tooltip-text">Select numerator of board length in inches</span>
+    </div>
 
-    <%= f.label :board_length_denominator, "Denominator" %>
-    <%= f.select :board_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "board_length_denominator" %>
+    <div class="tooltip-wrapper">
+      <%= f.label :board_length_denominator, "Denominator" %>
+      <%= f.select :board_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "board_length_denominator", aria: { describedby: "board-denominator-tooltip" } %>
+      <span id="board-denominator-tooltip" class="tooltip-text">Select denominator of board length in inches</span>
+    </div>
   </div>
 
   <div>
@@ -26,11 +31,17 @@
     <%= f.label :piece_length_whole, "Whole" %>
     <%= f.number_field :piece_length_whole, id: "piece_length_whole" %>
 
-    <%= f.label :piece_length_numerator, "Numerator" %>
-    <%= f.select :piece_length_numerator, options_for_select((0..31).to_a), {},  id: "piece_length_numerator" %>
+    <div class="tooltip-wrapper">
+      <%= f.label :piece_length_numerator, "Numerator" %>
+      <%= f.select :piece_length_numerator, options_for_select((0..31).to_a), {},  id: "piece_length_numerator", aria: { describedby: "piece-numerator-tooltip"} %>
+      <span id="piece-numerator-tooltip" class="tooltip-text">Select numerator of piece length in inches</span>
+    </div>
 
+    <div class="tooltip-wrapper">
     <%= f.label :piece_length_denominator, "Denominator" %>
-    <%= f.select :piece_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "piece_length_denominator" %>
+    <%= f.select :piece_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "piece_length_denominator", aria: { describedby: "piece-denominator-tooltip" } %>
+      <span id="piece-denominator-tooltip" class="tooltip-text">Select denominator of piece length in inches</span>
+    </div>
   </div>
 
   <div>

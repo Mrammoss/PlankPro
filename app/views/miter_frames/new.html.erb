@@ -18,11 +18,15 @@
       <%= f.label :inside_length_whole, "Whole" %>
       <%= f.number_field :inside_length_whole, id: "inside-length-whole" %>
 
+      <div class="tooltip-wrapper">
       <%= f.label :inside_length_numerator, "Numerator" %>
       <%= f.select :inside_length_numerator, options_for_select(0..31), {}, id: "inside-length-numerator" %>
+      </div>
 
+      <div class="tooltip-wrapper">
       <%= f.label :inside_length_denominator, "Denominator" %>
       <%= f.select :inside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "inside-length-denominator" %>
+      </div>
     </div>
     <div>
       <h3>Outside Length</h3>
