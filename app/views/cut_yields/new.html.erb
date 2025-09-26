@@ -38,8 +38,8 @@
     </div>
 
     <div class="tooltip-wrapper">
-    <%= f.label :piece_length_denominator, "Denominator" %>
-    <%= f.select :piece_length_denominator, options_for_select([1,2,4,8,16,32]), {}, {id: "piece_length_denominator", aria: { describedby: "piece-denominator-tooltip" }} %>
+      <%= f.label :piece_length_denominator, "Denominator" %>
+      <%= f.select :piece_length_denominator, options_for_select([1,2,4,8,16,32]), {}, {id: "piece_length_denominator", aria: { describedby: "piece-denominator-tooltip" }} %>
       <span id="piece-denominator-tooltip" class="tooltip-text">Select denominator of piece length in inches</span>
     </div>
   </div>
