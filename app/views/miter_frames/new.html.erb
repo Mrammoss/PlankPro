@@ -70,7 +70,7 @@
 
       <div class="tooltip-wrapper">
       <%= f.label :board_width_denominator, "Denominator" %>
-      <%= f.select :board_width_denominator, options_for_select([1,2,4,8,16,32]), {id: "board-width-denominator", aria: { describedby: "width-denominator-tooltip"}} %>
+      <%= f.select :board_width_denominator, options_for_select([1,2,4,8,16,32]), {}, {id: "board-width-denominator", aria: { describedby: "width-denominator-tooltip"}} %>
       <span id="width-denominator-tooltip" class="tooltip-text">Select denominator of board width in inches</span>
       </div>
 
