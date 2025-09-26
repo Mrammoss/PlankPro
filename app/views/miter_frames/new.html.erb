@@ -23,13 +23,13 @@
 
       <div class="tooltip-wrapper">
       <%= f.label :inside_length_numerator, "Numerator" %>
-      <%= f.select :inside_length_numerator, options_for_select(0..31), {}, id: "inside-length-numerator", aria: { describedby: "inside-numerator-tooltip"} %>
+      <%= f.select :inside_length_numerator, options_for_select(0..31), {}, {id: "inside-length-numerator", aria: { describedby: "inside-numerator-tooltip"}} %>
       <span id="inside-numerator-tooltip" class="tooltip-text">Select numerator of inside length in inches</span>
       </div>
 
       <div class="tooltip-wrapper">
       <%= f.label :inside_length_denominator, "Denominator" %>
-      <%= f.select :inside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "inside-length-denominator", aria: { describedby: "inside-denominator-tooltip"} %>
+      <%= f.select :inside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, {id: "inside-length-denominator", aria: { describedby: "inside-denominator-tooltip"}} %>
       <span id="inside-denominator-tooltip" class="tooltip-text">Select denominator of inside length in inches</span>
       </div>
     </div>
@@ -44,13 +44,13 @@
 
       <div class="tooltip-wrapper">
       <%= f.label :outside_length_numerator, "Numerator" %>
-      <%= f.select :outside_length_numerator, options_for_select(0..31), {}, id: "outside-length-numerator", aria: { describedby: "outside-numerator-tooltip"} %>
+      <%= f.select :outside_length_numerator, options_for_select(0..31), {}, {id: "outside-length-numerator", aria: { describedby: "outside-numerator-tooltip"}} %>
       <span id="outside-numerator-tooltip" class="tooltip-text">Select numerator of outside length in inches</span>
       </div>
 
       <div class="tooltip-wrapper">
       <%= f.label :outside_length_denominator, "Denominator" %>
-      <%= f.select :outside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, id: "outside-length-denominator", aria: { describedby: "outside-denominator-tooltip"} %>
+      <%= f.select :outside_length_denominator, options_for_select([1,2,4,8,16,32]), {}, {id: "outside-length-denominator", aria: { describedby: "outside-denominator-tooltip"}} %>
       <span id="outside-denominator-tooltip" class="tooltip-text">Select denominator of outside length in inches</span>
       </div>
     </div>
@@ -64,13 +64,13 @@
 
       <div class="tooltip-wrapper">
       <%= f.label :board_width_numerator, "Numerator" %>
-      <%= f.select :board_width_numerator, options_for_select(0..31), {}, id: "board-width-numerator", aria: { describedby: "width-numerator-tooltip"} %>
+      <%= f.select :board_width_numerator, options_for_select(0..31), {}, {id: "board-width-numerator", aria: { describedby: "width-numerator-tooltip"}} %>
       <span id="numerator-tooltip" class="tooltip-text">Select numerator of board width in inches</span>
       </div>
 
       <div class="tooltip-wrapper">
       <%= f.label :board_width_denominator, "Denominator" %>
-      <%= f.select :board_width_denominator, options_for_select([1,2,4,8,16,32]), id: "board-width-denominator", aria: { describedby: "width-denominator-tooltip"} %>
+      <%= f.select :board_width_denominator, options_for_select([1,2,4,8,16,32]), {id: "board-width-denominator", aria: { describedby: "width-denominator-tooltip"}} %>
       <span id="width-denominator-tooltip" class="tooltip-text">Select denominator of board width in inches</span>
       </div>
 
