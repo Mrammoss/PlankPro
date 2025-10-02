@@ -3,8 +3,7 @@ class MiterFramesController < ApplicationController
 
   # GET /miter_frames or /miter_frames.json
   def index
-    @miter_frames = current_user.miter_frames.order(:name)
-    @miter_frames = @miter_frames.where("name ILIKE ?", "%#{params[:query]}%") if params[:query].present?
+    @miter_frames = SearchService.new(current_user, MiterFrame, params[:query]).call
 
     respond_to do |format|
       format.html

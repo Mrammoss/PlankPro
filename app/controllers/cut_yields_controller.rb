@@ -4,8 +4,7 @@ class CutYieldsController < ApplicationController
 
   # GET /cut_yields or /cut_yields.json
   def index
-    @cut_yields = current_user.cut_yields.order(:name)
-    @cut_yields = @cut_yields.where("name ILIKE ?", "%#{params[:query]}%") if params[:query].present?
+    @cut_yields = SearchService.new(current_user, CutYield, params[:query]).call
 
     respond_to do |format|
       format.html
