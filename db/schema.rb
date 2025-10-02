@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[8.0].define(version: 2025_09_16_201255) do
   # These are extensions that must be enabled in order to support this database
-  # enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "cut_yields", force: :cascade do |t|
     t.decimal "board_length", precision: 7, scale: 4
