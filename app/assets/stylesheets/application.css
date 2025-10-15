@@ -39,6 +39,26 @@ header {
   transition: background 0.2s, box-shadow 0.2s;
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* everything in one line */
+  gap: 15px;                    /* space between all items (links + user info) */
+  padding: 10px 20px;
+  color: white;
+}
+
+.nav-link {
+  color: white;
+  padding: 5px;
+  background-color: black;
+  text-decoration: none;
+  border-radius: 4px;
+  opacity: 85%;
+}
+
+
+
 .tooltip-wrapper {
   position: relative;
   display: inline-block
@@ -134,8 +154,7 @@ header {
 
 
 .logo {
-  align-items: center;
-  text-align: center;
+  margin-right: auto;
 }
 
 .cut-name {

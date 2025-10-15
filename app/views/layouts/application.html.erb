@@ -24,15 +24,18 @@
 
   <body>
     <header>
-      <nav>
-        <% if user_signed_in? %>
-          Logged in as <%= current_user.email %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-          <%= link_to "Home", home_index_path %>
-        <% end %>
+      <nav class="header-nav">
         <div class="logo">
           <h2>PlankPro</h2>
         </div>
+
+        <% if user_signed_in? %>
+          Logged in as <%= current_user.email %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          <%= link_to "Home", home_index_path, class: "nav-link" %>
+          <%= link_to "Cut Yields", cut_yields_path, class: "nav-link" %>
+          <%= link_to "Miter Frames", miter_frames_path, class: "nav-link" %>
+        <% end %>
       </nav>
 
     </header>
@@ -41,15 +44,5 @@
     <p class="alert"><%= alert %></p>
     <%= yield %>
 
-    <% if user_signed_in? %>
-      <div id="footer-trigger">
-        <%= image_tag "icons/up-arrow.png", width:32, height:32, id: "footer-icon", data: { up: asset_path("icons/up-arrow.png"), down: asset_path("icons/down-arrow.png")} %>
-      </div>
-      <footer id="dynamic-footer" class="bg- text-light">
-        <%= link_to "Cut Yields", cut_yields_path, class: "text-white mx-3 fw-bold" %>
-        <%= link_to "Miter Frames", miter_frames_path, class: "text-white mx-3 fw-bold" %>
-
-      </footer>
-    <% end %>
   </body>
 </html>
