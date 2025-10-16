@@ -1,0 +1,7 @@
+<div class="toast-container">
+  <% flash.each do |type, message| %>
+    <div class="toast <%= type %>">
+      <p><%= message %></p>
+    </div>
+  <% end %>
+</div>

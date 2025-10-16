@@ -22,7 +22,8 @@ class CutYieldsController < ApplicationController
     @cut_yield = current_user.cut_yields.new(cut_yield_params)
 
     if @cut_yield.save
-      redirect_to cut_yields_path, notice: "Cut yield added successfully!"
+      flash[:notice] = "Cut yield created successfully!"
+      redirect_to cut_yields_path
     else
       render :index
     end
