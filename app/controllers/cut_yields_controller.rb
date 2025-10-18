@@ -25,6 +25,7 @@ class CutYieldsController < ApplicationController
       flash[:notice] = "Cut yield created successfully!"
       redirect_to cut_yields_path
     else
+      flash.now[:alert] = "There was a problem creating a cut yield."
       render :index
     end
   end
