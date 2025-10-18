@@ -23,6 +23,7 @@
   </head>
 
   <body>
+
     <header>
       <nav class="header-nav">
         <div class="logo">
@@ -39,9 +40,7 @@
       </nav>
 
     </header>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render "shared/flash" %>
     <%= yield %>
 
   </body>
