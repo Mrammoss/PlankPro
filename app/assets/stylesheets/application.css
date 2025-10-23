@@ -12,7 +12,10 @@ body {
   margin: 0;
   background-image: url("/images/andrey-haimin-q2Fyzn-KJOQ-unsplash.jpg");
   background-size: cover;
+  opacity: 97%;
+
 }
+
 
 header {
   background-color: cornflowerblue;
@@ -197,6 +200,11 @@ header {
 
 .logo {
   margin-right: auto;
+}
+
+.logo-link{
+  text-decoration: none;
+  color: white;
 }
 
 .cut-name {

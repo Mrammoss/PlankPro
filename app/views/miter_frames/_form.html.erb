@@ -1,177 +1,44 @@
-<%= form_with(model: miter_frame) do |form| %>
-  <% if miter_frame.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(miter_frame.errors.count, "error") %> prohibited this miter_frame from being saved:</h2>
+<h1>Edit Miter Frame</h1>
 
-      <ul>
-        <% miter_frame.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: @miter_frame, local: true) do |form| %>
+  <div class="yield-bubble">
+    <div class="cut-name">
+      <strong>
+        <%= form.label :name, "Name" %><br>
+        <%= form.text_field :name, class: "form-input" %>
+      </strong>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
+    <div class="cut-specs-text">
+      <p>
+        <%= form.label :shape_type, "Shape" %><br>
+        <%= form.text_field :shape_type, class: "form-input" %>
+      </p>
 
-  <div>
-    <%= form.label :inside_width, style: "display: block" %>
-    <%= form.text_field :inside_width %>
-  </div>
+      <p>
+        <%= form.label :inside_length_display, "Inside Length (in)" %><br>
+        <%= form.text_field :inside_length_display, class: "form-input" %>
+      </p>
 
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
+      <p>
+        <%= form.label :outside_length_show, "Outside Length (in)" %><br>
+        <%= form.text_field :outside_length_show, class: "form-input" %>
+      </p>
 
-  <div>
-    <%= form.label :inside_width_unit, style: "display: block" %>
-    <%= form.text_field :inside_width_unit %>
-  </div>
+      <p>
+        <%= form.label :board_width_display, "Board Width (in)" %><br>
+        <%= form.text_field :board_width_display, class: "form-input" %>
+      </p>
 
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
+      <p>
+        <%= form.label :miter_angle, "Miter Angle (°)" %><br>
+        <%= form.number_field :miter_angle, step: :any, class: "form-input" %>
+      </p>
+    </div>
 
-  <div>
-    <%= form.label :inside_height, style: "display: block" %>
-    <%= form.text_field :inside_height %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :inside_height_unit, style: "display: block" %>
-    <%= form.text_field :inside_height_unit %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :board_width, style: "display: block" %>
-    <%= form.text_field :board_width %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :board_width_unit, style: "display: block" %>
-    <%= form.text_field :board_width_unit %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :joint_angle, style: "display: block" %>
-    <%= form.text_field :joint_angle %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :miter_angle_one, style: "display: block" %>
-    <%= form.text_field :miter_angle_one %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :miter_angle_two, style: "display: block" %>
-    <%= form.text_field :miter_angle_two %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :piece_length, style: "display: block" %>
-    <%= form.text_field :piece_length %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :piece_length_unit, style: "display: block" %>
-    <%= form.text_field :piece_length_unit %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :total_material, style: "display: block" %>
-    <%= form.text_field :total_material %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :total_material_unit, style: "display: block" %>
-    <%= form.text_field :total_material_unit %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :waste_length, style: "display: block" %>
-    <%= form.text_field :waste_length %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :waste_length_unit, style: "display: block" %>
-    <%= form.text_field :waste_length_unit %>
-  </div>
-
-  <div>
-    <%= form.label : , style: "display: block" %>
-    <%= form.text_field :  %>
-  </div>
-
-  <div>
-    <%= form.label :project_id, style: "display: block" %>
-    <%= form.text_field :project_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <div class="bubble-actions">
+      <%= form.submit "Save Changes", class: "edit-text" %>
+      <%= link_to "Cancel", miter_frames_path, class: "delete-text" %>
+    </div>
   </div>
 <% end %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :miter_frames, only: [ :index, :new, :create, :destroy ] do
+  resources :miter_frames, only: [ :index, :new, :create, :destroy, :edit, :update ] do
     collection do
       post :calculate
     end
