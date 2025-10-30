@@ -1,5 +1,5 @@
 class MiterFramesController < ApplicationController
-  before_action :set_miter_frame, only: [ :destroy ]
+  before_action :set_miter_frame, only: [:edit, :update, :destroy ]
 
   # GET /miter_frames or /miter_frames.json
   def index
@@ -11,7 +11,17 @@ class MiterFramesController < ApplicationController
     end
   end
 
-  # GET /miter_frames/new
+  def edit
+  end   
+
+  def update
+    if @miter_frame.update(miter_frame_params)
+      redirect_to miter_frames_path, notice: "Miter frame updated"
+    else 
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def new
     @miter_frame = MiterFrame.new
   end

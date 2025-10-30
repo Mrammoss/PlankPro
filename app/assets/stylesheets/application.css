@@ -1,18 +1,11 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
 body {
   margin: 0;
   background-image: url("/images/andrey-haimin-q2Fyzn-KJOQ-unsplash.jpg");
   background-size: cover;
+  opacity: 97%;
+
 }
+
 
 header {
   background-color: cornflowerblue;
@@ -20,6 +13,56 @@ header {
   height: 50px;
   padding: 1rem 2rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2)
+}
+
+
+
+.toast-container {
+  position: fixed;
+  top: 90px;
+  margin-left: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 9999;
+}
+
+.toast {
+  background-color: #333;
+  color: #fff;
+  padding: .2px 6px;
+  border-radius: 20px;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeInOut 5s ease forwards;
+}
+
+.toast.notice {
+  background-color: mediumseagreen;
+}
+
+.toast.alert {
+  background-color: red;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10)
+  }
 }
 
 .login-button {
@@ -42,8 +85,8 @@ header {
 .header-nav {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* everything in one line */
-  gap: 15px;                    /* space between all items (links + user info) */
+  justify-content: flex-start;
+  gap: 15px;
   padding: 10px 20px;
   color: white;
 }
@@ -55,6 +98,23 @@ header {
   text-decoration: none;
   border-radius: 4px;
   opacity: 85%;
+}
+
+.nav-link:hover {
+  opacity: 100%;
+}
+
+.new-nav-link {
+  color: black;
+  padding: 5px;
+  background-color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  opacity: 85%;
+}
+
+.new-nav-link:hover {
+  opacity: 100%;
 }
 
 
@@ -83,7 +143,7 @@ header {
 }
 
 .tooltip-wrapper:hover .tooltip-text,
-.tooltip-wrapper:focus-within .tooltip-text{
+.tooltip-wrapper:focus-within .tooltip-text {
   visibility: visible;
   opacity: .875;
 }
@@ -157,6 +217,11 @@ header {
   margin-right: auto;
 }
 
+.logo-link {
+  text-decoration: none;
+  color: white;
+}
+
 .cut-name {
   color: #5A3DA0;
   font-weight: bold;
@@ -222,12 +287,14 @@ form#cut-yield-form div {
   gap: 1rem;
   align-items: center;
 }
-@media (min-width: 600px){
-form#cut-yield-form div {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-}}
+
+@media (min-width: 600px) {
+  form#cut-yield-form div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
 
 form#miter-frame-form {
   background-color: white;
@@ -263,6 +330,34 @@ form#miter-frame-form div {
   flex-wrap: wrap;
   max-height: 500px;
   overflow-y: auto;
+}
+
+.image-parent {
+  display: flex;
+  width: 100%;
+}
+
+.tape-measure {
+  display: flex;
+  justify-content: center;
+  width: 280px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.tape-image {
+  border: solid tan;
+  border-radius: 10px;
+}
+
+.protractor {
+  background-color: white;
+  border: solid tan;
+  border-radius: 10px;
+  padding: 2.5px;
+  width: 350px;
+  margin: 0 auto;
+
 }
 
 
