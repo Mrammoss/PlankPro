@@ -337,6 +337,17 @@ form#miter-frame-form div {
   width: 100%;
 }
 
+.sign-up-error{
+  background-color: red;
+  color: white;
+  display: flex;
+  border-radius: 10px;
+  width: 390px;
+  justify-content: center;
+  margin: 0 auto;
+
+}
+
 .tape-measure {
   display: flex;
   justify-content: center;
