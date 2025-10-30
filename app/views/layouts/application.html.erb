@@ -34,8 +34,10 @@
           Logged in as <%= current_user.email %> |
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
           <%= link_to "Home", home_index_path, class: "nav-link" %>
-          <%= link_to "Cut Yields", cut_yields_path, class: "nav-link" %>
-          <%= link_to "Miter Frames", miter_frames_path, class: "nav-link" %>
+          <%= link_to "All Cut Yields", cut_yields_path, class: "nav-link" %>
+          <%= link_to "All Miter Frames", miter_frames_path, class: "nav-link" %>
+          <%= link_to "New Cut Yield", new_cut_yield_path, class: "new-nav-link"%>
+          <%= link_to "New Miter Frame", new_miter_frame_path, class: "new-nav-link"%>
         <% end %>
       </nav>
 
